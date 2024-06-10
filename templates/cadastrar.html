@@ -3,11 +3,12 @@
 {% load static %}
 
 {% block content %}
-    <div>
-        <form method="post">
+    <div class="cadastrar_box">
+        <h3>Cadastrar</h3>
+        <form method="post" id="">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Cadastrar</button>
+            <button type="submit" class="btn btn-primary">Salvar</button>
         </form>
     </div>
 {% endblock %}

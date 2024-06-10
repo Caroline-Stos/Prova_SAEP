@@ -1,0 +1,62 @@
+header {
+    width: 100%;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content{
+    width: 100%;
+}
+
+h3 {
+    margin-bottom: 2rem;
+}
+
+.button_cadastro {
+    width: 80%;
+    height: 4rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.button_cadastro a, .td_acoes a {
+    text-decoration: none;
+}
+
+.fonte_style {
+    font-weight: 600;
+    font-size: 18px;
+}
+
+table {
+    width: 80%;
+}
+
+table th {
+    background-color: rgb(231, 228, 228);
+}
+
+table tr, table th {
+    border: 1px solid #ddd;
+    padding-left: 15px;
+}
+
+table td {
+    padding-left: 15px;
+}
+
+.td_acoes {
+    display: flex;
+    justify-content:space-evenly;
+}
+
+.cadastrar_box {
+    margin-top: 80px;
+}
+

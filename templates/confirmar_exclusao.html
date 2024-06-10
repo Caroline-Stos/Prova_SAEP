@@ -5,10 +5,13 @@
 {% block title %}<h2>Confirmar Exclusão</h2>{% endblock title %}
 
 {% block content %}
-    <p>Você tem certeza que deseja excluir a turma " {{ turma.nome }}"?</p>
+<div class="cadastrar_box">
+    <h3>Deletar</h3>
+    <h3>Você tem certeza que deseja excluir a turma " {{ turma.nome }}"?</h3>
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Confirmar Exclusão</button>
-        <a href="{% url 'home' %}">Cancelar</a>
+        <button type="submit" class="btn btn-danger">Confirmar Exclusão</button>
+        <a href="{% url 'home' %}" class="fonte_style">Cancelar</a>
     </form>
+</div>
 {% endblock content %}

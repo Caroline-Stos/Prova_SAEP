@@ -5,28 +5,29 @@
 {% block title %}<h2>Atividades</h2>{% endblock title %}
 
 {% block content %}
-<div>
+<div class="button_cadastro">
     <a href="{% url 'cadastrar_atividade' turma.id %}">Cadastrar Atividade</a>
 </div>
-<div>
-    <h3>Turma: {{ turma.nome }}</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Número</th>
-                <th>Nome</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% if atividades %}
-            {% for atividade in atividades %}
-            <!-- Aqui vão os dados das turmas -->
-            <tr>
-                <td>{{ atividade.id }}</td>
-                <td>{{ atividade.nome }}</td>
-            </tr>
-            {% endfor %}
-            {% endif %}
-        </tbody>
-    </table>
+
+<h3>Turma: {{ turma.nome }}</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Número</th>
+            <th>Nome</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if atividades %}
+        {% for atividade in atividades %}
+        <tr>
+            <td>{{ atividade.id }}</td>
+            <td>{{ atividade.nome }}</td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+
 {% endblock %}
