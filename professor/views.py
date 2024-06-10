@@ -6,26 +6,29 @@ from .forms import TurmaForm, AtividadeForm
 from .models import Professor, Turma, Atividade
 
 class Home(LoginRequiredMixin, View):
+    """Página inicial."""
     def get(self, request):
-        turmas = Turma.objects.all()
-        professor = Professor.objects.get(user=self.request.user)
+        turmas = Turma.objects.filter(professor__user=request.user) 
+        professor = get_object_or_404(Professor, user=request.user)
         return render(request, 'home.html', {'turmas': turmas, 'professor': professor})
     
 class CadastrarTurma(LoginRequiredMixin, CreateView):
+    """View para cadastrar uma nova turma."""
     model = Turma
     form_class = TurmaForm
     template_name = 'cadastrar.html'
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        professor = Professor.objects.get(user=self.request.user)
+        professor = get_object_or_404(Professor, user=self.request.user)
         form.instance.professor = professor
         return super().form_valid(form)
 
 class ListarAtividades(LoginRequiredMixin, View):
+    """View para listar atividades de uma turma."""
     def get(self, request, pk):
         turma = get_object_or_404(Turma, pk=pk)
-        atividades = Atividade.objects.filter(turma=turma)
+        atividades = turma.atividade_set.all()
         professor = get_object_or_404(Professor, user=request.user)
         return render(request, 'listar_atividades.html', {
             'turma': turma, 
@@ -34,10 +37,10 @@ class ListarAtividades(LoginRequiredMixin, View):
         })
 
 class CadastrarAtividade(LoginRequiredMixin, CreateView):
+    """View para cadastrar uma nova atividade."""
     model = Atividade
     form_class = AtividadeForm
     template_name = 'cadastrar.html'
-    success_url = reverse_lazy('listar_atividades')
 
     def form_valid(self, form):
         turma = get_object_or_404(Turma, id=self.kwargs['pk'])
@@ -48,6 +51,7 @@ class CadastrarAtividade(LoginRequiredMixin, CreateView):
         return reverse_lazy('listar_atividades', kwargs={'pk': self.kwargs['pk']})
 
 class DeletarTurma(LoginRequiredMixin, DeleteView):
+    """View para deletar uma turma."""
     model = Turma
-    template_name = 'confirmar_exclusao.html'  # Seu template de confirmação de exclusão
+    template_name = 'confirmar_exclusao.html'  
     success_url = reverse_lazy('home')
