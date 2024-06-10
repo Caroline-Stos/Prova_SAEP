@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Login</title>
+</head>
+<body>
+  <div class="login-container">
+    <div class='col-md-4 offset-md-4'>
+        <div class='card auth-card'>
+            <div class='card-body'>
+                <h4 class='card-title text-center'>Login</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="password" name="password" placeholder="Senha" required>
+                    <button type="submit" class='btn btn-primary btn-block'>ENTRAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+</body>
+</html>
