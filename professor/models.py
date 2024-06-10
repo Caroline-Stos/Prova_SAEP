@@ -1,15 +1,15 @@
 from django.db import models
 from django.conf import settings
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from .users import CustomUserManager
 
-class CustomUser(AbstractBaseUser):
+class CustomUser(AbstractBaseUser, PermissionsMixin):
         
     email = models.EmailField(unique=True, null=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    objects = CustomUserManager().create_user
+    objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -17,6 +17,9 @@ class CustomUser(AbstractBaseUser):
     class Meta:
         verbose_name = 'Usuário'
         verbose_name_plural = 'Usuários'
+
+    def get_by_natural_key(self, email):
+        return self.get(email=email)
 
 class Professor(models.Model):
     nome = models.CharField(max_length=100)

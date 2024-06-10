@@ -14,8 +14,7 @@
                 <h4 class='card-title text-center'>Login</h2>
                 <form method="post">
                     {% csrf_token %}
-                    <input type="email" name="email" placeholder="Email" required>
-                    <input type="password" name="password" placeholder="Senha" required>
+                    {{ form.as_p }}
                     <button type="submit" class='btn btn-primary btn-block'>ENTRAR</button>
                 </form>
             </div>
